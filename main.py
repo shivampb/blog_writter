@@ -8,7 +8,7 @@ import time
 st.set_page_config(page_title="Destinova Research Assistant", layout="wide")
 st.title("🔍 Destinova Research Assistant")
 st.markdown(
-    "<h1 style='text-align: center; font-weight: bold;'>USING: GEMINI 2.5-PRO</h1>", 
+    "<h4 style='text-align: center; font-weight: bold;'>USING: GEMINI 2.5-PRO</h4>", 
     unsafe_allow_html=True
 )
 
