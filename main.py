@@ -5,17 +5,8 @@ from crewai import Agent, Task, Crew, Process, LLM
 from crewai_tools import SerperDevTool
 import time
 
-<<<<<<< HEAD
 st.set_page_config(page_title="ReComAI Research Assistant", layout="wide")
 st.title("🔍 ReComAI Research Assistant")
-=======
-st.set_page_config(page_title="Destinova Research Assistant", layout="wide")
-st.title("🔍 Destinova Research Assistant")
-st.markdown(
-    "<h4 style='text-align: center; font-weight: bold;'>USING: GEMINI 2.5-PRO</h4>", 
-    unsafe_allow_html=True
-)
->>>>>>> f5fa0ec88f2772265e3c806b889baa9fa6a94f16
 
 # Sidebar for API keys
 with st.sidebar:
