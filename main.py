@@ -3,7 +3,21 @@ import asyncio
 import os
 from crewai import Agent, Task, Crew, Process, LLM
 from crewai_tools import SerperDevTool
+from docx import Document
+from io import BytesIO
 import time
+
+def report_to_docx(report_text: str) -> BytesIO:
+    doc = Document()
+
+    for line in report_text.split("\n"):
+        doc.add_paragraph(line)
+
+    buffer = BytesIO()
+    doc.save(buffer)
+    buffer.seek(0)
+    return buffer
+
 
 st.set_page_config(page_title="ReComAI Research Assistant", layout="wide")
 st.title("🔍 ReComAI Research Assistant")
@@ -221,9 +235,11 @@ if st.session_state.history:
     for idx, report in enumerate(reversed(st.session_state.history), 1):
         st.markdown(f"### 📄 Result #{len(st.session_state.history) - idx + 1}")
         st.markdown(report, unsafe_allow_html=True)
+        docx_file = report_to_docx(report)
         st.download_button(
-            label="Download Report",
-            data=report,
-            file_name=f"tactics_report_{len(st.session_state.history) - idx + 1}.md",
+            label="Download Report (DOCX)",
+            data=docx_file,
+            file_name=f"tactics_report_{len(st.session_state.history) - idx + 1}.docx",
+            mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
             key=f"download_{idx}",
         )
