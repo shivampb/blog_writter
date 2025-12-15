@@ -3,7 +3,6 @@ import asyncio
 import os
 from crewai import Agent, Task, Crew, Process, LLM
 from crewai_tools import SerperDevTool
-from docx import Document
 from io import BytesIO
 import time
 
