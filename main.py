@@ -18,7 +18,7 @@ with st.sidebar:
 
 # User topic input
 user_input = st.text_area(
-    "Enter the topic for 2025 research:", "What are the new Business mens tactics"
+    "Enter the topic for 2026 research:", "What are the new Business mens tactics"
 )
 
 # Initialize session state to keep history
@@ -37,7 +37,7 @@ async def run_crew(user_input, progress_callback):
     senior_researcher = Agent(
         role="Senior Web Research Analyst",
         goal=(
-            "Research using external internet search tool and summarize only the specific topic the user requests for the year 2025 "
+            "Research using external internet search tool and summarize only the specific topic the user requests for the year 2026 "
             "with accuracy, clarity, and trusted context. "
             "You are strictly instructed to provide a source link at the end of each key point or paragraph "
             "based on the information retrieved via the search tool."
@@ -50,7 +50,7 @@ async def run_crew(user_input, progress_callback):
             "You are a seasoned researcher skilled at delivering high-quality insights on any topic the user provides—"
             "from technology and education to finance, science, or public policy. "
             "You strictly avoid speculation, outdated facts, or promotional fluff. "
-            "You focus only on well-reasoned, fact-based developments related to 2025 and always include clear source references "
+            "You focus only on well-reasoned, fact-based developments related to 2026 and always include clear source references "
             "with each insight."
         ),
         llm=llm,
@@ -142,11 +142,11 @@ async def run_crew(user_input, progress_callback):
     research_task = Task(
         description=(
             f"The user has requested research on: **{user_input}**\n\n"
-            "Your job is to use trusted sources and write a long deep detailed **Markdown-formatted report** about this topic strictly for the year **2025**.\n\n"
+            "Your job is to use trusted sources and write a long deep detailed **Markdown-formatted report** about this topic strictly for the year **2026**.\n\n"
             "**Important:** At the end of each paragraph or bullet point, include the **source URL** in this format source (url) from where the information was found using the search tool.\n\n"
             "**Guidelines:**\n"
             "- Focus ONLY on content relevant to the user's topic\n"
-            "- Include only factual updates or developments from 2025\n"
+            "- Include only factual updates or developments from 2026\n"
             "- Avoid speculation, promotion, or outdated information\n"
             "- Summarize why the events are relevant, and who is involved\n"
             "- Use Bullet's points, med size paragraphs, etc \n"
@@ -154,7 +154,7 @@ async def run_crew(user_input, progress_callback):
             "-Do Not Use Agent Search Tool"
         ),
         agent=senior_researcher,
-        expected_output="A clean, 2025-specific, well-structured report on the user's requested topic.",
+        expected_output="A clean, 2026-specific, well-structured report on the user's requested topic.",
     )
 
     humanize_task = Task(
