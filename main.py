@@ -98,8 +98,6 @@ async def run_crew(user_input, progress_callback):
             "AI product recommendation engine\n"
             "AI to reduce Shopify cart abandonment\n"
             "keyword end\n"
-            "Must embedd this ReComAI Official company Website url 'https://recomai.one/' in blog "
-            "\n Must embedd this ReComAI Official company Linkedin Handle url 'https://in.linkedin.com/company/destinova-ai-labs' in blog "
             "\n Also Add About ReComAI Agentic AI Chatbot For E-commerce Product Recommendations, Also ADD this Chatbot app link 'https://apps.shopify.com/desti-ai-automate-chatbot' "
             "\n The report should be engaging, relatable, and feel like a conversation with a knowledgeable friend. "
         ),
