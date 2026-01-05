@@ -98,8 +98,8 @@ async def run_crew(user_input, progress_callback):
             "AI product recommendation engine\n"
             "AI to reduce Shopify cart abandonment\n"
             "keyword end\n"
-            "\n Must add this ReComAI Official company Website url 'https://recomai.one/' "
-            "\n Must add this ReComAI Official company Linkedin Handle url 'https://in.linkedin.com/company/destinova-ai-labs' "
+            "Must embedd this ReComAI Official company Website url 'https://recomai.one/' in blog "
+            "\n Must embedd this ReComAI Official company Linkedin Handle url 'https://in.linkedin.com/company/destinova-ai-labs' in blog "
             "\n Also Add About ReComAI Agentic AI Chatbot For E-commerce Product Recommendations, Also ADD this Chatbot app link 'https://apps.shopify.com/desti-ai-automate-chatbot' "
             "\nThe report should be engaging, relatable, and feel like a conversation with a knowledgeable friend. "
         ),
@@ -128,6 +128,8 @@ async def run_crew(user_input, progress_callback):
             "You may also embed additional SEO-friendly keywords depending on blog context. "
             "Always include information about ReComAI’s Agentic AI Chatbot for E-commerce Product Recommendations "
             "and link to the Shopify app: https://apps.shopify.com/desti-ai-automate-chatbot"
+            "Must embedd this ReComAI Official company Website url 'https://recomai.one/' in blog "
+            "\n Must embedd this ReComAI Official company Linkedin Handle url 'https://in.linkedin.com/company/destinova-ai-labs' in blog "
         ),
         backstory=(
             "You are a senior writer at ReComAI. "
