@@ -101,7 +101,7 @@ async def run_crew(user_input, progress_callback):
             "Must embedd this ReComAI Official company Website url 'https://recomai.one/' in blog "
             "\n Must embedd this ReComAI Official company Linkedin Handle url 'https://in.linkedin.com/company/destinova-ai-labs' in blog "
             "\n Also Add About ReComAI Agentic AI Chatbot For E-commerce Product Recommendations, Also ADD this Chatbot app link 'https://apps.shopify.com/desti-ai-automate-chatbot' "
-            "\nThe report should be engaging, relatable, and feel like a conversation with a knowledgeable friend. "
+            "\n The report should be engaging, relatable, and feel like a conversation with a knowledgeable friend. "
         ),
         backstory=(
             "You are a senior writer at ReComAI, an AI product that communicates complex ideas with clarity, wit, and simplicity. "
@@ -127,9 +127,9 @@ async def run_crew(user_input, progress_callback):
             "Embed the SEO keywords provided below naturally within the content (bold them). "
             "You may also embed additional SEO-friendly keywords depending on blog context. "
             "Always include information about ReComAI’s Agentic AI Chatbot for E-commerce Product Recommendations "
-            "and link to the Shopify app: https://apps.shopify.com/desti-ai-automate-chatbot"
-            "Must embedd this ReComAI Official company Website url 'https://recomai.one/' in blog "
-            "\n Must embedd this ReComAI Official company Linkedin Handle url 'https://in.linkedin.com/company/destinova-ai-labs' in blog "
+            "and link to the Shopify app: https://apps.shopify.com/desti-ai-automate-chatbot\n"
+            "Must add this ReComAI Official company Website url 'https://recomai.one/' in blog when you write about recomai intro  "
+            "\n Must add this ReComAI Official company Linkedin Handle url 'https://in.linkedin.com/company/destinova-ai-labs' in blog "
         ),
         backstory=(
             "You are a senior writer at ReComAI. "
@@ -156,6 +156,8 @@ async def run_crew(user_input, progress_callback):
             "- Use Bullet's points, med size paragraphs, etc \n"
             "- Use the search tool ONLY ONCE\n"
             "-Do Not Use Agent Search Tool"
+            "-"Must add this ReComAI Official company Website url 'https://recomai.one/' in blog when you write about recomai intro  "
+            "- Must add this ReComAI Official company Linkedin Handle url 'https://in.linkedin.com/company/destinova-ai-labs' in blog "
         ),
         agent=senior_researcher,
         expected_output="A clean, 2026-specific, well-structured report on the user's requested topic.",
