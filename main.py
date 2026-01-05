@@ -156,7 +156,7 @@ async def run_crew(user_input, progress_callback):
             "- Use Bullet's points, med size paragraphs, etc \n"
             "- Use the search tool ONLY ONCE\n"
             "-Do Not Use Agent Search Tool"
-            "-"Must add this ReComAI Official company Website url 'https://recomai.one/' in blog when you write about recomai intro  "
+            "-Must add this ReComAI Official company Website url 'https://recomai.one/' in blog when you write about recomai intro  "
             "- Must add this ReComAI Official company Linkedin Handle url 'https://in.linkedin.com/company/destinova-ai-labs' in blog "
         ),
         agent=senior_researcher,
