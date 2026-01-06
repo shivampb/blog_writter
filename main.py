@@ -153,7 +153,8 @@ async def run_crew(user_input, progress_callback):
             "- Summarize why the events are relevant, and who is involved\n"
             "- Use Bullet's points, med size paragraphs, etc \n"
             "- Use the search tool ONLY ONCE\n"
-            "-Do Not Use Agent Search Tool"
+            "-Do Not Use Agent Search Tool\n"
+            
         ),
         agent=senior_researcher,
         expected_output="A clean, 2026-specific, well-structured report on the user's requested topic.",
@@ -163,6 +164,7 @@ async def run_crew(user_input, progress_callback):
         description=(
             f"Take the verified report on **{user_input}** and rewrite it with a human-first, conversational tone.\n\n"
             "Follow the SEO and humanization guidelines as specified above."
+            
         ),
         agent=humanizer_agent,
         expected_output="A humanized, SEO-friendly engaging blog-style rewrite that feels like it was written by a real person at ReComAI.",
@@ -178,6 +180,8 @@ async def run_crew(user_input, progress_callback):
         "2. Blog Structure:\n"
         "- Introduction, Headings, Subheadings, and Conclusion as per SEO best practices.\n"
         "- Maintain keyword density, LSI inclusion, and human readability.\n"
+        "Must add this ReComAI Official company Website url 'https://recomai.one/' in blog when you write about recomai intro\n"
+        "Must add this ReComAI Official company Linkedin Handle url 'https://in.linkedin.com/company/destinova-ai-labs' in blog "
     )
 
     SEO_task = Task(
