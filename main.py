@@ -42,7 +42,7 @@ async def run_crew(user_input, progress_callback):
             # "You are strictly instructed to provide a source link at the end of each key point or paragraph "
             "based on the information retrieved via the search tool."
             "You have to process all information You got From search tool"
-            "make sure to write right and accurate url link which you get from external search tool response."
+            # "make sure to write right and accurate url link which you get from external search tool response."
             "No need to use LLM Search feature, always use External tools AND ONLY ONE TIME "
             "If any error occurs in the program, immediately stop further processing and terminate the execution"
         ),
