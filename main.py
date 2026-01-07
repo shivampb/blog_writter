@@ -39,7 +39,7 @@ async def run_crew(user_input, progress_callback):
         goal=(
             "Research using external internet search tool and summarize only the specific topic the user requests for the year 2026 "
             "with accuracy, clarity, and trusted context. "
-            "You are strictly instructed to provide a source link at the end of each key point or paragraph "
+            # "You are strictly instructed to provide a source link at the end of each key point or paragraph "
             "based on the information retrieved via the search tool."
             "You have to process all information You got From search tool"
             "make sure to write right and accurate url link which you get from external search tool response."
@@ -50,7 +50,7 @@ async def run_crew(user_input, progress_callback):
             "You are a seasoned researcher skilled at delivering high-quality insights on any topic the user provides—"
             "from technology and education to finance, science, or public policy. "
             "You strictly avoid speculation, outdated facts, or promotional fluff. "
-            "You focus only on well-reasoned, fact-based developments related to 2026 and always include clear source references "
+            "You focus only on well-reasoned, fact-based developments related to 2026"
             "with each insight."
         ),
         llm=llm,
@@ -65,7 +65,7 @@ async def run_crew(user_input, progress_callback):
             "Rewrite the refined research report with a clear, engaging, and personal tone that feels human and use only daily life and common words, phrases, sentences etc, no need to add complex english words behalf on ReComAI. "
             "A generative AI product specializing in AI Chatbot for E-commerce Product Recommendations. "
             "Represents the brand voice of ReComAI. Your job is to ensure the blog sounds like it's written by a thoughtful human expert, "
-            "not AI. Preserve all factual content and source links, but make the writing relatable, warm, and grounded in daily life."
+            "not AI. Preserve all factual content, but make the writing relatable, warm, and grounded in daily life."
             "Do not Miss or skip any information from Senior Web Research Analyst agent and provide atleast 1600 tokens output\n"
             "Embed these keywords provided below based on the context Also you can Embebbed S.E.O Friendly keywords According to the Blog type, by yourself, Make sure to Bold Them.\n"
             "Keywords:\n"
@@ -119,7 +119,7 @@ async def run_crew(user_input, progress_callback):
             "Use only daily life and common words, phrases, and sentences—no complex English. "
             "Write on behalf of ReComAI, a generative AI product specializing in AI Chatbots for E-commerce Product Recommendations. "
             "Ensure the blog sounds like it's written by a thoughtful human expert, not AI. "
-            "Preserve all factual content and source links, but make the writing relatable, warm, and grounded in daily life. "
+            "Preserve all factual content, but make the writing relatable, warm, and grounded in daily life. "
             "Do not skip or miss any information from the Senior Web Research Analyst agent. "
             "Provide at least 1600 tokens of output. "
             "Embed the SEO keywords provided below naturally within the content (bold them). "
@@ -145,7 +145,7 @@ async def run_crew(user_input, progress_callback):
         description=(
             f"The user has requested research on: **{user_input}**\n\n"
             "Your job is to use trusted sources and write a long deep detailed **Markdown-formatted report** about this topic strictly for the year **2026**.\n\n"
-            "**Important:** At the end of each paragraph or bullet point, include the **source URL** in this format source (url) from where the information was found using the search tool.\n\n"
+            # "**Important:** At the end of each paragraph or bullet point, include the **source URL** in this format source (url) from where the information was found using the search tool.\n\n"
             "**Guidelines:**\n"
             "- Focus ONLY on content relevant to the user's topic\n"
             "- Include only factual updates or developments from 2026\n"
