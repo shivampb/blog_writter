@@ -182,8 +182,8 @@ async def run_crew(user_input, progress_callback):
         "- Introduction, Headings, Subheadings, and Conclusion as per SEO best practices.\n"
         "- Maintain keyword density, LSI inclusion, and human readability.\n"
         "Must add this ReComAI Official company Website url 'https://recomai.one/' in blog when you write about recomai intro\n"
-        "Must add this ReComAI Official company Linkedin Handle url 'https://in.linkedin.com/company/destinova-ai-labs' in blog "
-        "Embedds the topic related blogs links from 'https://destinovaailabs.com/blog' in the relatable paragraph inside blogs as backling and redirect to that blog "
+        "Must add this ReComAI Official company Linkedin Handle url 'https://in.linkedin.com/company/destinova-ai-labs' in blog \n"
+        "Generate contextual backlinks to other blog articles from https://destinovaailabs.com/blog. Embed links naturally within the paragraph text so users are redirected to related Destinova AI Labs blog articles."
     )
 
     SEO_task = Task(
