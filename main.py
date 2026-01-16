@@ -39,7 +39,7 @@ async def run_crew(user_input, progress_callback):
         goal=(
             "Research using external internet search tool and summarize only the specific topic the user requests for the year 2026 "
             "with accuracy, clarity, and trusted context. "
-            "also with the help of web search tool of Gemini model must look for related topic blog from 'https://destinovaailabs.com/blog' and use the articles URL(Links) for embed the contextual internal backlink formation"
+            "also with the help of web search inbuilt web tool of Gemini model must look for related topic blog from 'https://destinovaailabs.com/blog' and use the articles URL(Links) for embed the contextual internal backlink formation"
             "You are strictly instructed to provide a source link at the end of each key point or paragraph "
             "based on the information retrieved via the search tool."
             "You have to process all information You got From search tool"
@@ -158,7 +158,7 @@ async def run_crew(user_input, progress_callback):
             "- Use the search tool ONLY ONCE\n"
             "-Do Not Use Agent Search Tool \n"
             "-Add Url Links Correctly \n"
-            "-with the help of tool search related topic blog from 'https://destinovaailabs.com/blog' and use the articles URL(Links) for embed the contextual internal backlink formation \n"
+            "-with the help of inbuilt tool web search related topic blog from 'https://destinovaailabs.com/blog' and use the articles URL(Links) for embed the contextual internal backlink formation \n"
             "-with the help of web search tool of Gemini model must look for related topic blog from 'https://destinovaailabs.com/blog' and use the articles URL(Links) for embed the contextual internal backlink formation \n"
             
         ),
@@ -171,6 +171,7 @@ async def run_crew(user_input, progress_callback):
             f"Take the verified report on **{user_input}** and rewrite it with a human-first, conversational tone.\n\n"
             "Follow the SEO and humanization guidelines as specified above."
             "But do not Modify Urls,links,backlinks,embedded links"
+            "dont add tool urls, only add destinov ai labs article links no other website url should be in blog"
             
         ),
         agent=humanizer_agent,
@@ -190,7 +191,8 @@ async def run_crew(user_input, progress_callback):
         "Must add this ReComAI Official company Website url 'https://recomai.one/' in blog when you write about recomai intro\n"
         "Must add this ReComAI Official company Linkedin Handle url 'https://in.linkedin.com/company/destinova-ai-labs' in blog \n"
         "Generate contextual backlinks to other blog articles from destinovaailabs.com Embed links naturally within the paragraph text so users are redirected to related Destinova AI Labs blog articles and Ensure all urls correct and exists\n"
-        "Ensure all added links are valid, correct, and fully functional—do not include broken, invalid, or non-working URLs; only add verified working links."
+        "Ensure all added links are valid, correct, and fully functional—do not include broken, invalid, or non-working URLs; only add verified working links.\n"
+        "dont add tool urls, only add destinov ai labs article links no other website url should be in blog"
     )
 
     SEO_task = Task(
