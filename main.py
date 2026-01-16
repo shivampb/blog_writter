@@ -39,10 +39,11 @@ async def run_crew(user_input, progress_callback):
         goal=(
             "Research using external internet search tool and summarize only the specific topic the user requests for the year 2026 "
             "with accuracy, clarity, and trusted context. "
-            # "You are strictly instructed to provide a source link at the end of each key point or paragraph "
+            "also with the help of tool must look for related topic blog from 'https://destinovaailabs.com/blog' and use the articles URL(Links) for embed the contextual internal backlink formation"
+            "You are strictly instructed to provide a source link at the end of each key point or paragraph "
             "based on the information retrieved via the search tool."
             "You have to process all information You got From search tool"
-            # "make sure to write right and accurate url link which you get from external search tool response."
+            "make sure to write right and accurate url link which you get from external search tool response."
             "No need to use LLM Search feature, always use External tools AND ONLY ONE TIME "
             "If any error occurs in the program, immediately stop further processing and terminate the execution"
         ),
@@ -157,6 +158,7 @@ async def run_crew(user_input, progress_callback):
             "- Use the search tool ONLY ONCE\n"
             "-Do Not Use Agent Search Tool\n"
             "-Add Url Links Correctly"
+            "-with the help of tool search related topic blog from 'https://destinovaailabs.com/blog' and use the articles URL(Links) for embed the contextual internal backlink formation"
             "-Must add and Ensure all added links are valid, correct, and fully functional—do not include broken, invalid, or non-working URLs; only add verified working links."
             
         ),
@@ -168,6 +170,7 @@ async def run_crew(user_input, progress_callback):
         description=(
             f"Take the verified report on **{user_input}** and rewrite it with a human-first, conversational tone.\n\n"
             "Follow the SEO and humanization guidelines as specified above."
+            "But do not Modify Urls,links,backlinks,embedded links"
             
         ),
         agent=humanizer_agent,
