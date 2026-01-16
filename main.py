@@ -39,7 +39,7 @@ async def run_crew(user_input, progress_callback):
         goal=(
             "Research using external internet search tool and summarize only the specific topic the user requests for the year 2026 "
             "with accuracy, clarity, and trusted context. "
-            "also with the help of tool must look for related topic blog from 'https://destinovaailabs.com/blog' and use the articles URL(Links) for embed the contextual internal backlink formation"
+            "also with the help of web search tool of Gemini model must look for related topic blog from 'https://destinovaailabs.com/blog' and use the articles URL(Links) for embed the contextual internal backlink formation"
             "You are strictly instructed to provide a source link at the end of each key point or paragraph "
             "based on the information retrieved via the search tool."
             "You have to process all information You got From search tool"
@@ -156,10 +156,10 @@ async def run_crew(user_input, progress_callback):
             "- Summarize why the events are relevant, and who is involved\n"
             "- Use Bullet's points, med size paragraphs, etc \n"
             "- Use the search tool ONLY ONCE\n"
-            "-Do Not Use Agent Search Tool\n"
-            "-Add Url Links Correctly"
-            "-with the help of tool search related topic blog from 'https://destinovaailabs.com/blog' and use the articles URL(Links) for embed the contextual internal backlink formation"
-            "-Must add and Ensure all added links are valid, correct, and fully functional—do not include broken, invalid, or non-working URLs; only add verified working links."
+            "-Do Not Use Agent Search Tool \n"
+            "-Add Url Links Correctly \n"
+            "-with the help of tool search related topic blog from 'https://destinovaailabs.com/blog' and use the articles URL(Links) for embed the contextual internal backlink formation \n"
+            "-with the help of web search tool of Gemini model must look for related topic blog from 'https://destinovaailabs.com/blog' and use the articles URL(Links) for embed the contextual internal backlink formation \n"
             
         ),
         agent=senior_researcher,
