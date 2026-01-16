@@ -128,7 +128,7 @@ async def run_crew(user_input, progress_callback):
             "and link to the Shopify app: https://apps.shopify.com/desti-ai-automate-chatbot\n"
             "Must add this ReComAI Official company Website url 'https://recomai.one/' in blog when you write about recomai intro  "
             "\n Must add this ReComAI Official company Linkedin Handle url 'https://in.linkedin.com/company/destinova-ai-labs' in blog "
-            "\n Generate internal backlinks by embedding relevant Destinova AI Labs blog article links (from https://destinovaailabs.com/blog ) naturally within the paragraph content to improve user navigation and SEO"
+            "\n Generate internal backlinks by embedding relevant Destinova AI Labs blog article links (from https://destinovaailabs.com/blog ) naturally within the paragraph content to improve user navigation and SEO also Ensure all embedded URLs are valid and not broken. All urls correctly and existed"
         ),
         backstory=(
             "You are a senior writer at ReComAI. "
@@ -183,7 +183,7 @@ async def run_crew(user_input, progress_callback):
         "- Maintain keyword density, LSI inclusion, and human readability.\n"
         "Must add this ReComAI Official company Website url 'https://recomai.one/' in blog when you write about recomai intro\n"
         "Must add this ReComAI Official company Linkedin Handle url 'https://in.linkedin.com/company/destinova-ai-labs' in blog \n"
-        "Generate contextual backlinks to other blog articles from https://destinovaailabs.com/blog. Embed links naturally within the paragraph text so users are redirected to related Destinova AI Labs blog articles."
+        "Generate contextual backlinks to other blog articles from https://destinovaailabs.com/blog. Embed links naturally within the paragraph text so users are redirected to related Destinova AI Labs blog articles and Ensure all urls correct and exists"
     )
 
     SEO_task = Task(
