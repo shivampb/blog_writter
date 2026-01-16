@@ -156,6 +156,8 @@ async def run_crew(user_input, progress_callback):
             "- Use Bullet's points, med size paragraphs, etc \n"
             "- Use the search tool ONLY ONCE\n"
             "-Do Not Use Agent Search Tool\n"
+            "-Add Url Links Correctly"
+            "-Must add and Ensure all added links are valid, correct, and fully functional—do not include broken, invalid, or non-working URLs; only add verified working links."
             
         ),
         agent=senior_researcher,
