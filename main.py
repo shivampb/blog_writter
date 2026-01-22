@@ -39,20 +39,18 @@ async def run_crew(user_input, progress_callback):
         goal=(
             "Research using external internet search tool and summarize only the specific topic the user requests for the year 2026 "
             "with accuracy, clarity, and trusted context. "
-            "also with the help of web search inbuilt web tool of Gemini model must look for related topic blog from 'https://destinovaailabs.com/blog' and use the articles URL(Links) for embed the contextual internal backlink formation"
+            "CRITICAL: You MUST use the search tool to find related blog articles from Destinova AI Labs. "
+            "Execute a search query like 'site:destinovaailabs.com/blog [user_topic]' to find relevant articles. "
+            "Collect at least 2-3 relevant URLs from 'destinovaailabs.com/blog' to be used for internal context linking. "
             "You are strictly instructed to provide a source link at the end of each key point or paragraph "
             "based on the information retrieved via the search tool."
-            "You have to process all information You got From search tool"
-            "make sure to write right and accurate url link which you get from external search tool response."
-            "No need to use LLM Search feature, always use External tools AND ONLY ONE TIME "
-            "If any error occurs in the program, immediately stop further processing and terminate the execution"
+            "If any error occurs, immediately stop further processing."
         ),
         backstory=(
-            "You are a seasoned researcher skilled at delivering high-quality insights on any topic the user provides—"
-            "from technology and education to finance, science, or public policy. "
+            "You are a seasoned researcher skilled at delivering high-quality insights on any topic the user provides. "
+            "You also specialize in content strategy, ensuring new content connects with existing knowledge bases. "
             "You strictly avoid speculation, outdated facts, or promotional fluff. "
-            "You focus only on well-reasoned, fact-based developments related to 2026"
-            "with each insight."
+            "You focus only on well-reasoned, fact-based developments related to 2026."
         ),
         llm=llm,
         tools=[tool],
@@ -68,7 +66,10 @@ async def run_crew(user_input, progress_callback):
             "Represents the brand voice of ReComAI. Your job is to ensure the blog sounds like it's written by a thoughtful human expert, "
             "not AI. Preserve all factual content, but make the writing relatable, warm, and grounded in daily life."
             "Do not Miss or skip any information from Senior Web Research Analyst agent and provide atleast 1600 tokens output\n"
-            "Embed these keywords provided below based on the context Also you can Embebbed S.E.O Friendly keywords According to the Blog type, by yourself, Make sure to Bold Them.\n"
+            "**SEO MANDATE**: deeply integrate High Volume SEO ranking Contextual keywords throughout the article. "
+            "Prioritize the 'Core Short-Tail Keywords' for headings and introductions, but ensure they flow naturally. "
+            "The content must rank for these high-volume terms without feeling like 'keyword stuffing'. "
+            "Bold all used keywords.\n"
             "Keywords:\n"
             "Core Short-Tail Keywords (High Volume / Broad)\n\n"
             "AI product recommendation Shopify\n"
@@ -114,30 +115,21 @@ async def run_crew(user_input, progress_callback):
     )
 
     SEO_agent = Agent(
-        role="Conversational AI Humanizer",
+        role="SEO Specialist & Content Optimizer",
         goal=(
-            "Rewrite the refined research report with a clear, engaging, and personal tone that feels human. "
-            "Use only daily life and common words, phrases, and sentences—no complex English. "
-            "Write on behalf of ReComAI, a generative AI product specializing in AI Chatbots for E-commerce Product Recommendations. "
-            "Ensure the blog sounds like it's written by a thoughtful human expert, not AI. "
-            "Preserve all factual content, but make the writing relatable, warm, and grounded in daily life. "
-            "Do not skip or miss any information from the Senior Web Research Analyst agent. "
-            "Provide at least 1600 tokens of output. "
-            "Embed the SEO keywords provided below naturally within the content (bold them). "
-            "You may also embed additional SEO-friendly keywords depending on blog context. "
-            "Always include information about ReComAI’s Agentic AI Chatbot for E-commerce Product Recommendations "
-            "and link to the Shopify app: https://apps.shopify.com/desti-ai-automate-chatbot\n"
-            "Must add this ReComAI Official company Website url 'https://recomai.one/' in blog when you write about recomai intro  "
-            "\n Must add this ReComAI Official company Linkedin Handle url 'https://in.linkedin.com/company/destinova-ai-labs' in blog "
-            "\n Generate internal backlinks by embedding relevant Destinova AI Labs blog article links from destinovaailabs.com naturally within the paragraph content to improve user navigation and SEO also Ensure all embedded URLs are valid and not broken. All urls correctly and existed"
-            "\n Ensure all added links are valid, correct, and fully functional—do not include broken, invalid, or non-working URLs; only add verified working links."
+            "Review and refine the humanized report to ensure maximum SEO impact and perfect internal linking. "
+            "Ensure the tone remains human and engaging. "
+            "Verify that the internal links to 'destinovaailabs.com/blog' found by the Researcher are embedded naturally in relevant contexts. "
+            "If links were missing, try to infer where they would fit if you had them, but prioritize using the ones provided. "
+            "Ensure the ReComAI official website 'https://recomai.one/' is linked when introducing ReComAI. "
+            "Ensure the LinkedIn handle 'https://in.linkedin.com/company/destinova-ai-labs' is included. "
+            "Double-check that all embedded URLs are valid and functional. "
+            "Do not include any tool URLs or broken links."
         ),
         backstory=(
-            "You are a senior writer at ReComAI. "
-            "Your strength is transforming technical or dry content into relatable, blog-style storytelling that feels like a conversation. "
-            "You use everyday analogies, varied sentence length, and soft opinions to make complex ideas stick. "
-            "You ensure every piece avoids AI-like patterns and feels truly human. "
-            "You balance warmth, expertise, and clarity, while embedding SEO naturally. "
+            "You are an SEO expert at ReComAI. "
+            "You ensure every piece of content is perfectly optimized for search engines while maintaining a great user experience. "
+            "You are obsessive about internal linking structures (Topic Clusters) to boost site authority."
         ),
         llm=llm,
         allow_delegation=False,
@@ -147,35 +139,32 @@ async def run_crew(user_input, progress_callback):
     research_task = Task(
         description=(
             f"The user has requested research on: **{user_input}**\n\n"
-            "Your job is to use trusted sources and write a long deep detailed **Markdown-formatted report** about this topic strictly for the year **2026**.\n\n"
-            # "**Important:** At the end of each paragraph or bullet point, include the **source URL** in this format source (url) from where the information was found using the search tool.\n\n"
+            "Your job is to:\n"
+            "1. Conduct deep research using trusted sources for the year **2026**.\n"
+            "2. **Internal Link Discovery**: Use the search tool to find 3-5 existing blog articles on 'destinovaailabs.com/blog' that are relevant to this topic. Query example: `site:destinovaailabs.com/blog {topic}`.\n"
+            "3. Compile a detailed Markdown report.\n"
+            "4. **List the Internal Links** you found clearly at the beginning or end of your report so the writer can use them.\n\n"
             "**Guidelines:**\n"
             "- Focus ONLY on content relevant to the user's topic\n"
             "- Include only factual updates or developments from 2026\n"
             "- Avoid speculation, promotion, or outdated information\n"
-            "- Summarize why the events are relevant, and who is involved\n"
-            "- Use Bullet's points, med size paragraphs, etc \n"
-            "- Use the search tool ONLY ONCE\n"
-            "-Do Not Use Agent Search Tool \n"
-            "-Add Url Links Correctly \n"
-            "-with the help of inbuilt tool web search related topic blog from 'https://destinovaailabs.com/blog' and use the articles URL(Links) for embed the contextual internal backlink formation \n"
-            "-with the help of web search tool of Gemini model must look for related topic blog from 'https://destinovaailabs.com/blog' and use the articles URL(Links) for embed the contextual internal backlink formation \n"
-            
+            "- Use source URLs at the end of paragraphs.\n"
         ),
         agent=senior_researcher,
-        expected_output="A clean, 2026-specific, well-structured report on the user's requested topic.",
+        expected_output="A clean, 2026-specific report including a list of relevant internal blog URLs from destinovaailabs.com.",
     )
 
     humanize_task = Task(
         description=(
-            f"Take the verified report on **{user_input}** and rewrite it with a human-first, conversational tone.\n\n"
-            "Follow the SEO and humanization guidelines as specified above."
-            "But do not Modify Urls,links,backlinks,embedded links"
-            "dont add tool urls, only add destinov ai labs article links no other website url should be in blog"
-            
+            f"Take the report on **{user_input}** and rewrite it with a human-first, conversational tone.\n\n"
+            "**Crucial Step**: Contextually embed the internal blog links provided by the Researcher. "
+            "For example, if the text mentions 'AI tactics', link it to a relevant 'destinovaailabs.com/blog' article found."
+            "Do not just list the links; weave them into the sentences.\n"
+            "**SEO MANDATE**: deeply integrate High Volume SEO ranking Contextual keywords throughout the article. "
+            "Follow the keyword and humanization guidelines."
         ),
         agent=humanizer_agent,
-        expected_output="A humanized, SEO-friendly engaging blog-style rewrite that feels like it was written by a real person at ReComAI.",
+        expected_output="A humanized blog post with naturally embedded internal links.",
     )
 
     seo_guidelines = (
@@ -185,14 +174,16 @@ async def run_crew(user_input, progress_callback):
         "- Place the primary keyword at the beginning.\n"
         "- Use numbers, power words, or questions to attract clicks.\n"
         "- Avoid keyword stuffing.\n\n"
-        "2. Blog Structure:\n"
-        "- Introduction, Headings, Subheadings, and Conclusion as per SEO best practices.\n"
-        "- Maintain keyword density, LSI inclusion, and human readability.\n"
-        "Must add this ReComAI Official company Website url 'https://recomai.one/' in blog when you write about recomai intro\n"
-        "Must add this ReComAI Official company Linkedin Handle url 'https://in.linkedin.com/company/destinova-ai-labs' in blog \n"
-        "Generate contextual backlinks to other blog articles from destinovaailabs.com Embed links naturally within the paragraph text so users are redirected to related Destinova AI Labs blog articles and Ensure all urls correct and exists\n"
-        "Ensure all added links are valid, correct, and fully functional—do not include broken, invalid, or non-working URLs; only add verified working links.\n"
-        "dont add tool urls, only add destinov ai labs article links no other website url should be in blog"
+        "2. Internal Linking:\n"
+        "- Ensure the blog has at least 2-3 internal links to 'destinovaailabs.com/blog'.\n"
+        "- Link text (anchor text) should be descriptive and relevant.\n"
+        "3. External & Brand Links:\n"
+        "- ReComAI Website: https://recomai.one/\n"
+        "- LinkedIn: https://in.linkedin.com/company/destinova-ai-labs\n"
+        "- Shopify App: https://apps.shopify.com/desti-ai-automate-chatbot\n"
+        "4. High Volume Keywords:\n"
+        "- Verify that the high-volume short-tail keywords are present in the Title, Introduction, and at least one H2.\n"
+        "- Ensure the flow remains natural despite the strategic placement.\n"
     )
 
     SEO_task = Task(
