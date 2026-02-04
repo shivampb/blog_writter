@@ -166,8 +166,8 @@ async def run_crew(user_input, progress_callback):
             "**Crucial Step**: Contextually embed the internal blog links provided by the Researcher. "
             "For example, if the text mentions 'AI tactics', link it to a relevant 'destinovaailabs.com/blog' article found."
             "Do not just list the links; weave them into the sentences.\n"
-            "**SEO MANDATE**: deeply integrate High Volume SEO ranking Contextual keywords throughout the article. "
-            "Follow the keyword and humanization guidelines."
+            "**AEO & SEO MANDATE**: Deeply integrate High Volume SEO ranking Contextual keywords and AEO structures (Question -> Direct Answer). "
+            "Follow the keyword, AEO, and humanization guidelines."
         ),
         agent=humanizer_agent,
         expected_output="A humanized blog post with naturally embedded internal links.",
