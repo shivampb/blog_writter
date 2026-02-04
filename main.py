@@ -31,7 +31,7 @@ async def run_crew(user_input, progress_callback):
     os.environ["GEMINI_API_KEY"] = gemini_api
     os.environ["SERPER_API_KEY"] = serper_api
 
-    llm = LLM(model="gemini/gemini-3-flash-preview", temperature=0.2)
+    llm = LLM(model="gemini/gemini-1.5-flash", temperature=0.2)
     tool = SerperDevTool()
 
     senior_researcher = Agent(
@@ -56,6 +56,8 @@ async def run_crew(user_input, progress_callback):
         tools=[tool],
         allow_delegation=False,
         verbose=True,
+        max_iter=3,  # Limit tools usage
+        max_rpm=10,   # Avoid hitting rate limits
     )
 
     humanizer_agent = Agent(
@@ -66,7 +68,8 @@ async def run_crew(user_input, progress_callback):
             "Represents the brand voice of ReComAI. Your job is to ensure the blog sounds like it's written by a thoughtful human expert, "
             "not AI. Preserve all factual content, but make the writing relatable, warm, and grounded in daily life."
             "Do not Miss or skip any information from Senior Web Research Analyst agent and provide atleast 1600 tokens output\n"
-            "**SEO MANDATE**: deeply integrate High Volume SEO ranking Contextual keywords throughout the article. "
+            "**AEO & SEO MANDATE**: Deeply integrate High Volume SEO ranking Contextual keywords and AEO (Answer Engine Optimization) structures. "
+            "Structure important sections as 'Question -> Direct Answer -> Elaboration' to target AI search answers (Perplexity, ChatGPT). "
             "Prioritize the 'Core Short-Tail Keywords' for headings and introductions, but ensure they flow naturally. "
             "The content must rank for these high-volume terms without feeling like 'keyword stuffing'. "
             "Bold all used keywords.\n"
@@ -112,12 +115,14 @@ async def run_crew(user_input, progress_callback):
         llm=llm,
         allow_delegation=False,
         verbose=True,
+        max_rpm=10,
     )
 
     SEO_agent = Agent(
         role="SEO Specialist & Content Optimizer",
         goal=(
-            "Review and refine the humanized report to ensure maximum SEO impact and perfect internal linking. "
+            "Review and refine the humanized report to ensure maximum SEO and AEO (Answer Engine Optimization) impact. "
+            "Ensure the blog is optimized for AI search engines (Perplexity, SearchGPT) by checking for clear, direct answers to questions. "
             "Ensure the tone remains human and engaging. "
             "Verify that the internal links to 'destinovaailabs.com/blog' found by the Researcher are embedded naturally in relevant contexts. "
             "If links were missing, try to infer where they would fit if you had them, but prioritize using the ones provided. "
@@ -134,6 +139,7 @@ async def run_crew(user_input, progress_callback):
         llm=llm,
         allow_delegation=False,
         verbose=True,
+        max_rpm=10,
     )
 
     research_task = Task(
@@ -174,14 +180,18 @@ async def run_crew(user_input, progress_callback):
         "- Place the primary keyword at the beginning.\n"
         "- Use numbers, power words, or questions to attract clicks.\n"
         "- Avoid keyword stuffing.\n\n"
-        "2. Internal Linking:\n"
+        "2. AEO (Answer Engine Optimization):\n"
+        "- Use Question-based Headings (H2/H3) for key topics (e.g. 'How does AI help...').\n"
+        "- Provide a 'Direct Answer Block' (2-3 sentences, ~40-60 words) immediately after the question.\n"
+        "- Use logical formatting: Bullet points, Numbered lists, and Bold text for easy AI parsing.\n\n"
+        "3. Internal Linking:\n"
         "- Ensure the blog has at least 2-3 internal links to 'destinovaailabs.com/blog'.\n"
         "- Link text (anchor text) should be descriptive and relevant.\n"
-        "3. External & Brand Links:\n"
+        "4. External & Brand Links:\n"
         "- ReComAI Website: https://recomai.one/\n"
         "- LinkedIn: https://in.linkedin.com/company/destinova-ai-labs\n"
         "- Shopify App: https://apps.shopify.com/desti-ai-automate-chatbot\n"
-        "4. High Volume Keywords:\n"
+        "5. High Volume Keywords:\n"
         "- Verify that the high-volume short-tail keywords are present in the Title, Introduction, and at least one H2.\n"
         "- Ensure the flow remains natural despite the strategic placement.\n"
     )
