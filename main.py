@@ -31,7 +31,7 @@ async def run_crew(user_input, progress_callback):
     os.environ["GEMINI_API_KEY"] = gemini_api
     os.environ["SERPER_API_KEY"] = serper_api
 
-    llm = LLM(model="gemini/gemini-1.5-flash", temperature=0.2)
+    llm = LLM(model="gemini/gemini-2.5-flash", temperature=0.2)
     tool = SerperDevTool()
 
     senior_researcher = Agent(
@@ -60,21 +60,18 @@ async def run_crew(user_input, progress_callback):
         max_rpm=10,   # Avoid hitting rate limits
     )
 
-    humanizer_agent = Agent(
-        role="Conversational AI Humanizer",
+    content_writer_agent = Agent(
+        role="Senior Content Writer & SEO Specialist",
         goal=(
-            "Rewrite the refined research report with a clear, engaging, and personal tone that feels human and use only daily life and common words, phrases, sentences etc, no need to add complex english words behalf on ReComAI. "
-            "A generative AI product specializing in AI Chatbot for E-commerce Product Recommendations. "
-            "Represents the brand voice of ReComAI. Your job is to ensure the blog sounds like it's written by a thoughtful human expert, "
-            "not AI. Preserve all factual content, but make the writing relatable, warm, and grounded in daily life."
-            "Do not Miss or skip any information from Senior Web Research Analyst agent and provide atleast 1600 tokens output\n"
-            "**AEO & SEO MANDATE**: Deeply integrate High Volume SEO ranking Contextual keywords and AEO (Answer Engine Optimization) structures. "
-            "Structure important sections as 'Question -> Direct Answer -> Elaboration' to target AI search answers (Perplexity, ChatGPT). "
-            "Prioritize the 'Core Short-Tail Keywords' for headings and introductions, but ensure they flow naturally. "
-            "The content must rank for these high-volume terms without feeling like 'keyword stuffing'. "
-            "Bold all used keywords.\n"
-            "Keywords:\n"
-            "Core Short-Tail Keywords (High Volume / Broad)\n\n"
+            "Synthesize the research into a high-quality, human-like blog post that ranks on Google and Answer Engines (AEO). "
+            "1. **Humanize**: Write in a clear, engaging, personal tone. Use analogies, varied sentence lengths, and avoid 'AI fluff'. "
+            "2. **AEO Structure**: rigidly follow 'Question -> Direct Answer (~50 words) -> Detailed Elaboration' for key sections. "
+            "3. **SEO Integration**: Naturally weave High-Volume keywords into headings and text without stuffing. Bold them. "
+            "4. **Internal Linking**: Contextually embed the 'destinovaailabs.com/blog' links provided by the Researcher. "
+            "5. **Brand & External**: Link to ReComAI, LinkedIn, and the Shopify App as specified. "
+            "Verify all links are functional and relevant."
+            "\n**Keywords to Target**:\n"
+            "Core Short-Tail Keywords (High Volume / Broad)\n"
             "AI product recommendation Shopify\n"
             "Shopify AI chatbot\n"
             "Shopify AI app\n"
@@ -101,40 +98,13 @@ async def run_crew(user_input, progress_callback):
             "AI for Shopify product discovery\n"
             "automate product suggestions in Shopify store\n"
             "AI product recommendation engine\n"
-            "AI to reduce Shopify cart abandonment\n"
-            "keyword end\n"
-            "\n Also Add About ReComAI Agentic AI Chatbot For E-commerce Product Recommendations, Also ADD this Chatbot app link 'https://apps.shopify.com/desti-ai-automate-chatbot' "
-            "\n The report should be engaging, relatable, and feel like a conversation with a knowledgeable friend. "
+            "AI to reduce Shopify cart abandonment"
         ),
         backstory=(
-            "You are a senior writer at ReComAI, an AI product that communicates complex ideas with clarity, wit, and simplicity. "
-            "You specialize in transforming technical or dry content into blog-style stories that feel like a conversation with the reader. "
-            "You bring in natural rhythms, everyday analogies, soft opinions, varied sentence length, and light humor or reflection to make the message stick. "
-            "You're also skilled at helping content avoid AI detection by making it feel authentically human in structure and voice."
-        ),
-        llm=llm,
-        allow_delegation=False,
-        verbose=True,
-        max_rpm=10,
-    )
-
-    SEO_agent = Agent(
-        role="SEO Specialist & Content Optimizer",
-        goal=(
-            "Review and refine the humanized report to ensure maximum SEO and AEO (Answer Engine Optimization) impact. "
-            "Ensure the blog is optimized for AI search engines (Perplexity, SearchGPT) by checking for clear, direct answers to questions. "
-            "Ensure the tone remains human and engaging. "
-            "Verify that the internal links to 'destinovaailabs.com/blog' found by the Researcher are embedded naturally in relevant contexts. "
-            "If links were missing, try to infer where they would fit if you had them, but prioritize using the ones provided. "
-            "Ensure the ReComAI official website 'https://recomai.one/' is linked when introducing ReComAI. "
-            "Ensure the LinkedIn handle 'https://in.linkedin.com/company/destinova-ai-labs' is included. "
-            "Double-check that all embedded URLs are valid and functional. "
-            "Do not include any tool URLs or broken links."
-        ),
-        backstory=(
-            "You are an SEO expert at ReComAI. "
-            "You ensure every piece of content is perfectly optimized for search engines while maintaining a great user experience. "
-            "You are obsessive about internal linking structures (Topic Clusters) to boost site authority."
+            "You are a dual-expert: a first-class storyteller and a technical SEO strategist. "
+            "You know how to write content that keeps humans reading while satisfying the algorithms of Google and Perplexity. "
+            "You hate generic AI content and strive to make every sentence feel handcrafted. "
+            "You believe internal linking is the backbone of site authority."
         ),
         llm=llm,
         allow_delegation=False,
@@ -160,19 +130,6 @@ async def run_crew(user_input, progress_callback):
         expected_output="A clean, 2026-specific report including a list of relevant internal blog URLs from destinovaailabs.com.",
     )
 
-    humanize_task = Task(
-        description=(
-            f"Take the report on **{user_input}** and rewrite it with a human-first, conversational tone.\n\n"
-            "**Crucial Step**: Contextually embed the internal blog links provided by the Researcher. "
-            "For example, if the text mentions 'AI tactics', link it to a relevant 'destinovaailabs.com/blog' article found."
-            "Do not just list the links; weave them into the sentences.\n"
-            "**AEO & SEO MANDATE**: Deeply integrate High Volume SEO ranking Contextual keywords and AEO structures (Question -> Direct Answer). "
-            "Follow the keyword, AEO, and humanization guidelines."
-        ),
-        agent=humanizer_agent,
-        expected_output="A humanized blog post with naturally embedded internal links.",
-    )
-
     seo_guidelines = (
         "Guidelines:\n"
         "1. SEO Title Guidelines:\n"
@@ -196,18 +153,25 @@ async def run_crew(user_input, progress_callback):
         "- Ensure the flow remains natural despite the strategic placement.\n"
     )
 
-    SEO_task = Task(
+    writing_task = Task(
         description=(
-            f"Take the humanizer report on **{user_input}** and rewrite it to be SEO friendly.\n\n"
+            f"Write a full-length, SEO-optimized blog post on **{user_input}** based on the provided research.\n"
+            "1. **Tone**: Conversational, human, engaging. (No 'In the rapidly evolving landscape...').\n"
+            "2. **Structure (AEO)**: Use H2/H3 for questions. Follow immediately with a direct answer block, then explain.\n"
+            "3. **Links**: \n"
+            "   - Integrate the `destinovaailabs.com/blog` links found by the Researcher naturally.\n"
+            "   - Add ReComAI Home: `https://recomai.one/`\n"
+            "   - Add Shopify App: `https://apps.shopify.com/desti-ai-automate-chatbot`\n"
+            "4. **Keywords**: Use the list in your goal. Bold them.\n"
             f"{seo_guidelines}"
         ),
-        agent=SEO_agent,
-        expected_output="A humanized, engaging blog-style rewrite that feels like it was written by a real person at ReComAI.",
+        agent=content_writer_agent,
+        expected_output="A production-ready, human-written, SEO/AEO-optimized blog post with correct internal and external links.",
     )
 
     crew = Crew(
-        agents=[senior_researcher, humanizer_agent, SEO_agent],
-        tasks=[research_task, humanize_task, SEO_task],
+        agents=[senior_researcher, content_writer_agent],
+        tasks=[research_task, writing_task],
         process=Process.sequential,
         verbose=True,
     )
