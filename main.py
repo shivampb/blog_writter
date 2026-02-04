@@ -31,7 +31,7 @@ async def run_crew(user_input, progress_callback):
     os.environ["GEMINI_API_KEY"] = gemini_api
     os.environ["SERPER_API_KEY"] = serper_api
 
-    llm = LLM(model="gemini/gemini-2.5-pro", temperature=0.2)
+    llm = LLM(model="gemini/gemini-2.5-flash", temperature=0.2)
     tool = SerperDevTool()
 
     senior_researcher = Agent(
